@@ -89,8 +89,8 @@ function renderSentenceList() {
   list.innerHTML = sentences.map((item, index) => `
     <article class="list-item">
       <div>
-        <p class="item-title">${escapeHtml(item.chinese)}</p>
-        <p class="item-subtitle">${escapeHtml(item.english)}</p>
+        <p class="sentence-english">${escapeHtml(item.english)}</p>
+        <p class="sentence-chinese">${escapeHtml(item.chinese)}</p>
       </div>
       <button class="danger" type="button" data-delete-sentence="${index}">删除</button>
     </article>

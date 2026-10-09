@@ -363,6 +363,23 @@ textarea:focus {
   overflow-wrap: anywhere;
 }
 
+.sentence-english {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.sentence-chinese {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
 .student-list {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
