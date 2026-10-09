@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>英语句子随机抽签</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Classroom Random Picker</p>
+        <h1>英语句子随机抽签</h1>
+      </div>
+      <nav class="tabs" aria-label="页面切换">
+        <button class="tab active" type="button" data-tab="draw">随机抽签</button>
+        <button class="tab" type="button" data-tab="sentences">句子库</button>
+        <button class="tab" type="button" data-tab="students">学生名单</button>
+      </nav>
+    </header>
+
+    <main class="app-shell">
+      <section class="panel draw-panel active" id="draw" aria-labelledby="draw-title">
+        <div class="section-head">
+          <div>
+            <h2 id="draw-title">随机匹配</h2>
+            <p>随机抽学生，再随机匹配中文释义。当前一轮会尽量避免重复抽到同一个学生或同一句释义。</p>
+          </div>
+          <div class="stats" aria-label="数据数量">
+            <span><strong id="student-count">0</strong> 名学生</span>
+            <span><strong id="sentence-count">0</strong> 个句子</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <label class="field compact">
+            <span>抽取人数</span>
+            <input id="draw-count" type="number" min="1" value="1">
+          </label>
+          <label class="check">
+            <input id="show-english" type="checkbox">
+            <span>同时显示英文句子</span>
+          </label>
+          <button class="primary" id="draw-button" type="button">开始随机抽签</button>
+          <button class="ghost" id="clear-button" type="button">清空结果</button>
+        </div>
+
+        <div class="notice" id="draw-notice" role="status"></div>
+        <div class="result-grid" id="results" aria-live="polite"></div>
+      </section>
+
+      <section class="panel" id="sentences" aria-labelledby="sentences-title">
+        <div class="section-head">
+          <div>
+            <h2 id="sentences-title">句子库</h2>
+            <p>添加英语句子和中文释义。保存后会留在当前浏览器里，发布时也可以直接改 `data/sentences.json`。</p>
+          </div>
+          <button class="ghost" id="reset-sentences" type="button">恢复示例句子</button>
+        </div>
+
+        <form class="editor-form" id="sentence-form">
+          <label class="field">
+            <span>英文句子</span>
+            <input id="english-input" type="text" placeholder="例如：Practice makes perfect.">
+          </label>
+          <label class="field">
+            <span>中文释义</span>
+            <input id="chinese-input" type="text" placeholder="例如：熟能生巧。">
+          </label>
+          <button class="primary" type="submit">添加句子</button>
+        </form>
+
+        <div class="bulk-box">
+          <label class="field">
+            <span>批量导入句子</span>
+            <textarea id="sentence-bulk" rows="5" placeholder="每行一条：英文句子 | 中文释义"></textarea>
+          </label>
+          <button class="ghost" id="import-sentences" type="button">批量导入</button>
+        </div>
+
+        <div class="list" id="sentence-list"></div>
+      </section>
+
+      <section class="panel" id="students" aria-labelledby="students-title">
+        <div class="section-head">
+          <div>
+            <h2 id="students-title">学生名单</h2>
+            <p>添加班级学生姓名。抽签时会从这里随机抽取，换人也会从未使用的人里随机选择。</p>
+          </div>
+          <button class="ghost" id="reset-students" type="button">恢复示例名单</button>
+        </div>
+
+        <form class="editor-form single" id="student-form">
+          <label class="field">
+            <span>学生姓名</span>
+            <input id="student-input" type="text" placeholder="例如：张三">
+          </label>
+          <button class="primary" type="submit">添加学生</button>
+        </form>
+
+        <div class="bulk-box">
+          <label class="field">
+            <span>批量导入学生</span>
+            <textarea id="student-bulk" rows="5" placeholder="每行一个学生姓名"></textarea>
+          </label>
+          <button class="ghost" id="import-students" type="button">批量导入</button>
+        </div>
+
+        <div class="list student-list" id="student-list"></div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>数据会自动保存在当前浏览器。</span>
+      <button class="link-button" id="download-data" type="button">下载当前数据备份</button>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
